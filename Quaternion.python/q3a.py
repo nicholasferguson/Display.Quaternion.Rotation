@@ -37,17 +37,20 @@ def normalize(v, tolerance=0.00001):
         v = tuple(n / mag for n in v)
     return np.array(v)
 
-def quaternion_mult(q,r):
-    return [r[0]*q[0]-r[1]*q[1]-r[2]*q[2]-r[3]*q[3],
-            r[0]*q[1]+r[1]*q[0]-r[2]*q[3]+r[3]*q[2],
-            r[0]*q[2]+r[1]*q[3]+r[2]*q[0]-r[3]*q[1],
-            r[0]*q[3]-r[1]*q[2]+r[2]*q[1]+r[3]*q[0]]
+# pq is pure quaternion
+# r is rotator quaternion
+def quaternion_mult(r,pq):
+    return [pq[0]*r[0]-pq[1]*r[1]-pq[2]*r[2]-pq[3]*r[3],
+            pq[0]*r[1]+pq[1]*r[0]-pq[2]*r[3]+pq[3]*r[2],
+            pq[0]*r[2]+pq[1]*r[3]+pq[2]*r[0]-pq[3]*r[1],
+            pq[0]*r[3]-pq[1]*r[2]+pq[2]*r[1]+pq[3]*r[0]]
 
-def point_rotation_by_quaternion(point,qq):
-    r = point
-    q = normalize(qq)
-    q_conj = [q[0],-1*q[1],-1*q[2],-1*q[3]]
-    return quaternion_mult(quaternion_mult(q,r),q_conj)
+# pq is pure quaternion
+# rq is rotator quaternion
+def point_rotation_by_quaternion(pq,rq):
+    r = normalize(rq)
+    r_conj = [r[0],-1*r[1],-1*r[2],-1*r[3]]
+    return quaternion_mult(quaternion_mult(r,pq),r_conj)
 
 degrees = math.pi/180;
 rot = 180*degrees;
@@ -55,19 +58,19 @@ rot = 180*degrees;
 w = math.cos(rot/2.);
 ax = math.sin(rot/2.);
 # quaternion format is [scalar, x, y ,z]
-pts1 = [0, 1, 2, 3]  # pure quaternion.  Scalar is zero.
-quat = [w, 0, ax, 0]  # play with ax as x,y,z  And change w
+pq = [0, 1, 2, 3]  # pure quaternion.  Scalar is zero.
+rq = [w, 0, ax, 0]  # play with ax on different axis: x,y,z  Change values of w and ax.
 
-qq = point_rotation_by_quaternion(pts1,quat)
-print(qq)
+pq2 = point_rotation_by_quaternion(pq,rq)
+print(pq2)
 
 # Fill in a start prism wire frame, using point and a 3D origin as vertices
 # Highlight point as vertex
 
 p1 = np.array([0.,0.,0.])
-p2 = np.array([pts1[1],0.,0.])
-p3 = np.array([0.,pts1[2],0.])
-p4 = np.array([0.,0.,pts1[3]])
+p2 = np.array([pq[1],0.,0.])
+p3 = np.array([0.,pq[2],0.])
+p4 = np.array([0.,0.,pq[3]])
 
 prism1 = [
     (p1[0],p1[1],p1[2]), (p2[0],p2[1],p2[2]), (p3[0],p3[1],p3[2]), (p4[0],p4[1],p4[2])
@@ -77,9 +80,9 @@ prism1 = [
 # Highlight point as vertex
 
 p1A = np.array([0.,0.,0.])
-p2A = np.array([qq[1],0.,0.])
-p3A = np.array([0.,qq[2],0.])
-p4A = np.array([0.,0.,qq[3]])
+p2A = np.array([pq2[1],0.,0.])
+p3A = np.array([0.,pq2[2],0.])
+p4A = np.array([0.,0.,pq2[3]])
 
 prism2 = [
     (p1A[0],p1A[1],p1A[2]), (p2A[0],p2A[1],p2A[2]), (p3A[0],p3A[1],p3A[2]), (p4A[0],p4A[1],p4A[2])
