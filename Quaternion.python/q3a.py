@@ -26,6 +26,10 @@
 # To prove that wire frames are correct, you need to rotate
 # image along its axes.
 
+# Note this pure quaternion, as a point, could be a significant point in
+# any geometric shape.  It must keep its shape, post rotation.  Ex:
+# it could be center of a sphere.
+
 import math
 import numpy as np
 import matplotlib.pyplot as plt
