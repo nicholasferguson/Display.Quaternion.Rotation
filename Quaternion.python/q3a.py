@@ -1,6 +1,6 @@
 # In notes below, 'overload' is a computer science term
 
-# Procedure: We examine two overloaded quaternions, both use
+# We examine two overloaded quaternions, both use
 # a format of [scalar, x, y, z] and not [x,y,z,scalar]
 
 # First overload is a quaternion that is a rotator.
@@ -14,8 +14,9 @@
 # [scalar, X, Y, Z] becomes [0, X, Y, Z].
 # Where X Y Z represents a point's coordinates in 3D space.
 
-# Procedure: quaternion rotator 'wedge product' with pure quaternion and result
-# is a 2nd pure quaternion.
+# Procedure: quaternion rotator multiplied with pure quaternion and result
+# is a 2nd pure quaternion: P' = ((rP)r-1)
+# r is rotator, r-1 is conjugate of rotator and P is pure quaternion.
 
 # To display this rotation,
 # we fill out wire frames of both pure quaternions.
