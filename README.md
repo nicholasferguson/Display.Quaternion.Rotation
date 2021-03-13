@@ -68,6 +68,7 @@ import os
 import sys
 plotprism_path = os.path.abspath(os.path.join(''))
 print("plotPrism.py must be in following directory")
+print("Path string will be from your own computer.  In README.MD value is from my computer")
 print(plotprism_path)
 if plotprism_path not in sys.path:
     sys.path.append(plotprism_path)
@@ -76,7 +77,8 @@ if plotprism_path not in sys.path:
 ```
 
     plotPrism.py must be in following directory
-    C:\github\clones\Display.Quaternion.Wedge.Product\Quaternion.python
+    Path string will be from your own computer.  In README.MD value is from my computer
+    C:\github\clones\Display.Quaternion.Rotation\Quaternion.python
     
 
 
