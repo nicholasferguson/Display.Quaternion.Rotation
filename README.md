@@ -137,7 +137,7 @@ ijk = -1<br>
 ik = -j  AND ki = j<br>
 
 **Now we redo multiplication of two quaternions**<br>
-Note: we need additional layers of indices to work with our complex number interface.
+Note: we need additional layers of indices to work with our complex number interface.<br>
 Quaternion 1: [a0,a1i,a2j,a3k]<br>
 Quaternion 2: [b0,b1i,b2j,b3k]<br>
 
@@ -162,7 +162,7 @@ a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a2b0)j + (a2b1)-k + (a2b2)-1+ (a2b3)i +<br>
 (a3b0)k + (a3b1)j + (a3b2)-i+ (a3b3)-1 <br>
 
-**Finally, we group by scalar or i, j, k **<br>
+**Finally, we group by scalar or i, j, k**<br>
 
 a0b0 - (a1b1) - (a2b2) -(a3b3)   # scalars <br>
 ((a0b1) +a1b0) + (a2b3) - (a3b2))i  # i's<br>
