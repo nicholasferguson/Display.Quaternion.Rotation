@@ -1,7 +1,7 @@
 ## This is a discussion for using Quaternion math for rotations.  It uses some computer science terminology: 'overloads' and 'interface"
 
 
-This explanation accompagnies two python files:  q3a.py and plotPrism.py <br>
+This explanation accompanies two python files:  q3a.py and plotPrism.py <br>
 
 Some computer science terminology will be used to explain quaternions:'overload' and 'interface'
 
@@ -99,13 +99,13 @@ With a 'complex number interface' we can reduce results to a [X Y Z] or pure qua
 
 
 
-### Generate a  'Complex Number Inteface' to get a quaternion multiplication function
+### Generate a  'Complex Number Interface' to get a quaternion multiplication function
 
 A complex number interface also has three axes: i, j, k.  They interface to X,Y,Z axis.  This interface will allow us to simplify quaternion multiplication to a pure quaternion.
 
-First we need some rules for complex number multiplication.  With this interface we will then do some subsitutions.
+First we need some rules for complex number multiplication.  With this interface we will then do some substitutions.
 
-Hamilton discovered that ijk = -1 and of course ii, jj, kk = -1.  It's not communative.  kj neq jk. But kj eq -jk (neg is not equal)
+Hamilton discovered that ijk = -1 and of course ii, jj, kk = -1.  It's not commutative.  kj neq jk. But kj eq -jk (neq is not equal)
 This interface creates a table where a single complex number equals a combination of two complex numbers
 
 ijk = -1 <br>
@@ -155,8 +155,8 @@ a0b0 - (a1b1) - (a2b2) -(a3b3)<br>
 
 Then we have a formula for our python file:
 
-We subsitute a0 for pq[0] and b0 for r[0] etc,,,,   This will result in <br>
-a pure quaterion of [Scalar, X, Y ,Z] from [Scalar, i, j, k]
+We substitute a0 for pq[0] and b0 for r[0] etc,,,,   This will result in <br>
+a pure quaternion of [Scalar, X, Y ,Z] from [Scalar, i, j, k]
 
 And we can now define out quaternion multiplication function:
 
