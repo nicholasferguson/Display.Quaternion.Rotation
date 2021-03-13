@@ -1,17 +1,16 @@
 ## This is a discussion for using Quaternion math for rotations.  <br> It uses some computer science terminology: 'overloads' and 'interface"
 
-Python version: 3.8.6 running on Windows 10.<br>
-This README.MD is produced from Quaternion.Rotation.Demo.ipynb
+Python version 3.8.6 on Windows 10. <br> 
 
 This explanation is documentation for two python files:  q3a.py and plotPrims.py <br>
 
 Some computer science terminology will be used to explain quaternions:'overload' and 'interface'
 
-In this write up, quaternions use <br>
-a format of [scalar, x, y, z] and not [x,y,z,scalar].  First format is called Hamilton's and 2nd format is called JPL.<br>
+In this write up, quaternions use
+a format of [scalar, x, y, z] and not [x,y,z,scalar].  First format is called Hamilton's and 2nd format is called JPL.
 This article will use Hamilton's format.
 
-We present quaternions as having 'overloads'.  
+**We present quaternions as having 'overloads'.** 
 
 First overload is a quaternion that is a rotator.  In our example, rotator is for Z axis only. <br>
  [scalar, X, Y, Z] becomes  <br>
@@ -99,13 +98,13 @@ When a quaternion multiplies a 2nd quaternion, Hamilton used 'exterior product'.
 Quaternion 1: [a0,a1,a3,a4] <br>
 Quaternion 2: [b0,b1,b2,b3] <br>
 
-Multiplication result: <br>
+**Result of multiplying Quaternion 1 by Quaternion 2:** <br>
 a0b0 + a0b1 + a0b2+ a0b3 + <br>
 a1b0 + a1b1 + a1b2+ a1b3 + <br>
 a2b0 + a2b1 + a2b2+ a2b3 + <br>
 a3b0 + a3b1 + a3b2+ a3b3  <br>
 
-With a 'complex number interface' we could then reduce these multiplication results to a [X Y Z] or pure quaternion.
+With a 'complex number interface' we could then reduce these multiplication results to a [X Y Z] or 'pure quaternion'.
 
 
 
@@ -113,59 +112,66 @@ With a 'complex number interface' we could then reduce these multiplication resu
 
 A complex number interface also has three axes: i, j, k.  They interface to X,Y,Z axis.  This interface will allow us to simplify quaternion multiplication to a pure quaternion.
 
-First we need some rules for complex number multiplication.  With this interface we will then do some substitutions.
+First we need some rules for complex number multiplication.  With these rules we will substitute pairs of complex numbers with a single complex numbers.  This results in our X, Y, Z rotated point.
 
-Hamilton discovered that ijk = -1 and of course ii, jj, kk = -1.  It's not commutative.  kj neq jk. But kj eq -jk (neq is not equal)
-This interface creates a table where a single complex number equals a combination of two complex numbers
+Hamilton discovered that<br>
+ijk = -1 and of course ii, jj, kk = -1.<br>
+It's not commutative.  kj neq jk. But kj eq -jk (neq is not equal)<br>
+First step in this interface is to create a table where a single complex number equals pairs of complex numbers
 
-ijk = -1 <br>
-iijk = -i <br>
--jk = -i <br>
-jk = i  Therefore kj = -i <br>
+ijk = -1 # Hamilton's discovery<br>
+iijk = -i # we multiply each side by 'i'<br>
+-jk = -i # ii = -1 <br>
+jk = i  AND kj = -i <br>
 
 ijk = -1<br>
--ikj = -1<br>
+-ikj = -1  # jk = -kj <br>
 kij = -i<br>
 kkij = -k  <br>
 -ij = -k
-ij=k  Therefore ji = -k<br>
+ij=k  AND ji = -k<br>
 
 ijk = -1<br>
 -jik = -1<br>
 -jjik = -j<br>
-ik = -j  Therefore ki = j<br>
+ik = -j  AND ki = j<br>
 
-Now we redo the multiplication of two quaternions<br>
+**Now we redo multiplication of two quaternions**<br>
+Note: we need additional layers of indices to work with our complex number interface.
 Quaternion 1: [a0,a1i,a2j,a3k]<br>
 Quaternion 2: [b0,b1i,b2j,b3k]<br>
+
+**Result of multiplying Quaternion 1 by Quaternion 2:** <br>
 
  a0b0 + a0b1i + a0b2j+ a0b3k +<br>
  a1ib0 + a1ib1i + a1ib2j+ a1ib3k +<br>
  a2jb0 + a2jb1i + a2jb2j+ a2jb3k +<br>
  a3kb0 + a3kb1i + a3kb2j+ a3kb3k <br>
 
-We restate it, by collecting complex variables together.<br>
+**We restate this result by collecting complex variables together.**<br>
 
 a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a1b0)i + (a1b1)ii + (a1b2)ij+ (a1b3)ik +<br>
 (a2b0)j + (a2b1)ji + (a2b2)jj+ (a2b3)jk +<br>
 (a3b0)k + (a3b1)ki + (a3b2)kj+ (a3b3)kk <br>
 
-Then we substitute pairs of complex variables with a single complex variable.<br>
+**Then we substitute pairs of complex variables with a single complex variable.**<br>
+
 a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a1b0)i + (a1b1)-1 + (a1b2)k+ (a1b3)-j +<br>
 (a2b0)j + (a2b1)-k + (a2b2)-1+ (a2b3)i +<br>
 (a3b0)k + (a3b1)j + (a3b2)-i+ (a3b3)-1 <br>
 
-Next, we group by scalar or i, j, k <br>
+**Finally, we group by scalar or i, j, k **<br>
+
 a0b0 - (a1b1) - (a2b2) -(a3b3)   # scalars <br>
 ((a0b1) +a1b0) + (a2b3) - (a3b2))i  # i's<br>
 ((a0b2) - (a1b3) + (a2b0) + (a3b1)j  # j's<br>
 ((a0b3) + (a1b2) - (a2b1) +  (a3b0))k  # k's<br>
 
-Now we have an interface for formula for our python file:
+**Now we have an interface to generate our quaternion multiplication function for our python file:**
 
-We substitute pq[0] for a0 and r[0] for b0 etc...   This will result in <br>
+We substitute pq[0] for a0 and r[0] for b0 etc...   This will multiplication function will now return<br>
 a pure quaternion of [Scalar, X, Y ,Z]
 
 
@@ -178,6 +184,14 @@ def quaternion_mult(r,pq):
             pq[0]*r[2]-pq[1]*r[3]+pq[2]*r[0]+pq[3]*r[1],
             pq[0]*r[3]+pq[1]*r[2]-pq[2]*r[1]+pq[3]*r[0]]
 
+
+```
+
+**We complete our rotation algorithm.**
+
+
+
+```python
 # pq is pure quaternion
 # rq is rotator quaternion
 def point_rotation_by_quaternion(pq,rq):
@@ -186,10 +200,10 @@ def point_rotation_by_quaternion(pq,rq):
     return quaternion_mult(quaternion_mult(r,pq),r_conj)
 ```
 
-Below are our two overloaded quaternions, with their angle of rotation. <br>
+**Below are our two overloaded quaternions, with their angle of rotation.** <br>
 These values can be changed by reader.<br>
 Note that plotPrism.py, currently can only handle a narrow range of values. This will be extended on a next version of code.<br>
-Note:  A formula for rotating a point (x, y) in 2D is given by: <br>
+**Note:  A formula for rotating a point (x, y) in 2D is given by:** <br>
 
 x': = x * cos (angle) - y * sin (angle) <br>
 y': = y * cos (angle) + x * sin (angle) <br>
@@ -256,7 +270,7 @@ plot_prism(prism1,prism2)
 
 
     
-![png](README_files/README_17_0.png)
+![png](README_files/README_19_0.png)
     
 
 
