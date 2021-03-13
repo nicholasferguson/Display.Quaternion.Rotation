@@ -142,23 +142,25 @@ a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a3b0)k + (a3b1)ki + (a3b2)kj+ (a3b3)kk <br>
 
 Then we substitute  to get a single complex variable.<br>
+
 a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a1b0)i + (a1b1)-1 + (a1b2)k+ (a1b3)-j +<br>
 (a2b0)j + (a2b1)-k + (a2b2)-1+ (a2b3)i +<br>
 (a3b0)k + (a3b1)j + (a3b2)-i+ (a3b3)-1 <br>
 
 Next, we group by scalar or i, j, k <br>
+
 a0b0 - (a1b1) - (a2b2) -(a3b3)<br>
 ((a0b1) +a1b0) + (a2b3) - (a3b2))i<br>
 ((a0b2) - (a1b3) + (a2b0) + (a3b1)j<br>
 ((a0b3) + (a1b2) - (a2b1) +  (a3b0))k<br>
 
-Then we have a formula for our python file:
+Then we have a function for our python file:
 
-We substitute a0 for pq[0] and b0 for r[0] etc,,,,   This will result in <br>
-a pure quaternion of [Scalar, X, Y ,Z] from [Scalar, i, j, k]
+We substitute pq[0] for a0 and r[0] for b0 etc,,,,   This will result in <br>
+a pure quaternion of [Scalar, X, Y ,Z],
 
-And we can now define out quaternion multiplication function:
+And we can now define our quaternion multiplication function:
 
 
 ```python
