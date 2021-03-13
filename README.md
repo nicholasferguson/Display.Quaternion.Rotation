@@ -43,7 +43,7 @@ from IPython.display import Image
 # Rotation is about a 'Z' axis.
 ```
 
-!["Result"](img/Result.png)
+!["Result"](Result.jpg)
 
 
 
