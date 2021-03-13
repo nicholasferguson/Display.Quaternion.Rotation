@@ -1,7 +1,7 @@
 ## This is a discussion for using Quaternion math for rotations.  It uses some computer science terminology: 'overloads' and 'interface"
 
 
-This explanation accompagnies two python files:  qa3.py and drawPrims.py <br>
+This explanation accompagnies two python files:  q3a.py and plotPrism.py <br>
 
 Some computer science terminology will be used to explain quaternions:'overload' and 'interface'
 
