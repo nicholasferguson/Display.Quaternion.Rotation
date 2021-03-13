@@ -2,7 +2,7 @@
 
 Python version 3.8.6 on Windows 10. <br> 
 
-This explanation is documentation for two python files:  q3a.py and plotPrims.py <br>
+This is documentation for two python files:  q3a.py and plotPrims.py <br>
 
 Some computer science terminology will be used to explain quaternions:'overload' and 'interface'
 
@@ -12,8 +12,11 @@ This article will use Hamilton's format.
 
 **We present quaternions as having 'overloads'.** 
 
-First overload is a quaternion that is a rotator.  In our example, rotator is for Z axis only. <br>
- [scalar, X, Y, Z] becomes  <br>
+**First overload is a quaternion that is a rotator.**<br>
+In our example, rotator is for Z axis only. <br>
+
+ [scalar, X, Y, Z] as a 'rotator' becomes  <br>
+ 
  [scalar = cos of rotating angle in radians,  <br>
    X = rotating angle about x axis = 0 radians,  <br>
    Y = rotating angle about y axis = 0 radians,  <br>
@@ -21,23 +24,25 @@ First overload is a quaternion that is a rotator.  In our example, rotator is fo
   
  Note:  This is notebook, so reader can change python code to rotate another axis:X Y Z, combination or all.  Also change angle of rotation.
 
- 2nd overloaded is a quaternion as a 'pure quaternion';  <br>
+ **2nd overloaded is a quaternion as a 'pure quaternion'.**  <br>
+ 
  [scalar, X, Y, Z] becomes [0, X, Y, Z].  <br>
- Where X Y Z represents a point's coordinates in 3D space.  <br>
+ 
+ This 'X Y Z' represents a point's coordinates in 3D space.  <br>
  
 Note:  plotPrism.py is coded to handle a fixed range of X Y Z.  In next iteration it will handle a wider range.  Reader can also coordinate values of X Y Z.
  
  Procedure: quaternion rotator multiplied with pure quaternion and result
  is a 2nd pure quaternion.
 
- To display this rotation,
- we fill out wire frames of both pure quaternions where initial (X Y Z) is a vertex 
- of a prism and  rotated (X Y Z) is a vertex of a second prism.
- Both wire frames have a 3D origin, as a vertex (0,0,0)
- Highlighted are original and rotated points.  
+ **To display this rotation**
+ We fill out wire frames of both pure quaternions. <br>
+ Initial (X Y Z) is a vertex  of a prism.<br>
+ Rotated (X Y Z) is a vertex of a second prism.<br>
+ Both wire frames have a 3D origin, as a vertex (0,0,0).<br>
+ Highlighted vertices are original and rotated points.  
 
- To prove that wire frames are correct, run the python code and rotate
- image along its axes.
+ To prove that wire frames are correct representations, run python code, outside of jupyter, and rotate image along its axes.
  
  In fig below we have an image of a rotation.
 
@@ -66,6 +71,15 @@ print(plotprism_path)
 if plotprism_path not in sys.path:
     sys.path.append(plotprism_path)
     
+
+```
+
+    plotPrism.py must be in following directory
+    C:\github\clones\Display.Quaternion.Wedge.Product\Quaternion.python
+    
+
+
+```python
 from plotPrism import plot_prism #plotprism.py
 
 
@@ -76,10 +90,6 @@ def normalize(v, tolerance=0.00001):
         v = tuple(n / mag for n in v)
     return np.array(v)
 ```
-
-    plotPrism.py must be in following directory
-    C:\github\clones\Display.Quaternion.Wedge.Product\Quaternion.python
-    
 
 ## Key math algorithms.
 
@@ -270,7 +280,7 @@ plot_prism(prism1,prism2)
 
 
     
-![png](README_files/README_19_0.png)
+![png](README_files/README_20_0.png)
     
 
 
