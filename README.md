@@ -4,10 +4,10 @@ Python version 3.8.6 on Windows 10. <br>
 
 This is documentation for two python files:  q3a.py and plotPrims.py <br>
 
-Some computer science terminology will be used to explain quaternions:'overload' and 'interface'
+Some computer science terminology will be used to explain quaternions: 'overload' and 'interface'
 
 In this write up, quaternions use
-a format of [scalar, x, y, z] and not [x,y,z,scalar].  First format is called Hamilton's and 2nd format is called JPL.
+a format of [Scalar, X, Y, Z] and not [X, Y, Z ,Scalar].  First format is called Hamilton's and 2nd format is called JPL.<br>
 This article will use Hamilton's format.
 
 **We present quaternions as having 'overloads'.** 
@@ -15,12 +15,12 @@ This article will use Hamilton's format.
 **First overload is a quaternion that is a rotator.**<br>
 In our example, rotator is for Z axis only. <br>
 
- [scalar, X, Y, Z] as a 'rotator' becomes  <br>
+ [Scalar, X, Y, Z] as a 'rotator' becomes  <br>
  
- [scalar = cos of rotating angle in radians,  <br>
+ [Scalar = cos of rotating angle in radians,  <br>
    X = rotating angle about x axis = 0 radians,  <br>
    Y = rotating angle about y axis = 0 radians,  <br>
-   Z = rotating angle about z axis = sin of scalar radians]  <br>
+   Z = rotating angle about z axis = sin of Scalar radians]  <br>
   
  Note:  This is notebook, so reader can change python code to rotate another axis:X Y Z, combination or all.  Also change angle of rotation.
 
@@ -30,10 +30,11 @@ In our example, rotator is for Z axis only. <br>
  
  This 'X Y Z' represents a point's coordinates in 3D space.  <br>
  
-Note:  plotPrism.py is coded to handle a fixed range of X Y Z.  In next iteration it will handle a wider range.  Reader can also coordinate values of X Y Z.
+Note:  plotPrism.py is coded to handle a fixed range of X Y Z values.  In next version it will handle a wider range.  Reader can also change values of X Y Z.
  
- Procedure: quaternion rotator multiplied with pure quaternion and result
- is a 2nd pure quaternion.
+**Overall Algorithm:** 
+A 'quaternion rotator' multiplied with 'pure quaternion' to result
+ in a 2nd 'pure quaternion'.
 
  **To display this rotation**
  We fill out wire frames of both pure quaternions. <br>
@@ -108,7 +109,7 @@ When a quaternion multiplies a 2nd quaternion, Hamilton used 'exterior product'.
 Quaternion 1: [a0,a1,a3,a4] <br>
 Quaternion 2: [b0,b1,b2,b3] <br>
 
-**Result of multiplying Quaternion 1 by Quaternion 2:** <br>
+**Result of multiplying Quaternion 2 by Quaternion 1:** <br>
 a0b0 + a0b1 + a0b2+ a0b3 + <br>
 a1b0 + a1b1 + a1b2+ a1b3 + <br>
 a2b0 + a2b1 + a2b2+ a2b3 + <br>
@@ -122,12 +123,13 @@ With a 'complex number interface' we could then reduce these multiplication resu
 
 A complex number interface also has three axes: i, j, k.  They interface to X,Y,Z axis.  This interface will allow us to simplify quaternion multiplication to a pure quaternion.
 
-First we need some rules for complex number multiplication.  With these rules we will substitute pairs of complex numbers with a single complex numbers.  This results in our X, Y, Z rotated point.
+First we need some rules for complex number multiplication.  With these rules we will substitute pairs of complex numbers with a single complex numbers.  This yields our X, Y, Z rotated point.
 
-Hamilton discovered that<br>
+**Hamilton discovered that**<br>
 ijk = -1 and of course ii, jj, kk = -1.<br>
 It's not commutative.  kj neq jk. But kj eq -jk (neq is not equal)<br>
-First step in this interface is to create a table where a single complex number equals pairs of complex numbers
+
+First step in this interface is to create a translation where pairs of complex number equal a single complex number.
 
 ijk = -1 # Hamilton's discovery<br>
 iijk = -i # we multiply each side by 'i'<br>
@@ -148,12 +150,12 @@ ik = -j  AND ki = j<br>
 
 **Now we redo multiplication of two quaternions**<br>
 Note: we need additional layers of indices to work with our complex number interface.<br>
-Quaternion 1: [a0,a1i,a2j,a3k]<br>
+Quaternion 1: [a0,a1i,a2j,a3k] This is [Scalar, i, j, k] <br> 
 Quaternion 2: [b0,b1i,b2j,b3k]<br>
 
-**Result of multiplying Quaternion 1 by Quaternion 2:** <br>
+**Result of multiplying Quaternion 2 by Quaternion 1:** <br>
 
- a0b0 + a0b1i + a0b2j+ a0b3k +<br>
+ a0b0 + a0b1i + a0b2j+ a0b3k + # we multiply Quaternion 2 by a0<br>
  a1ib0 + a1ib1i + a1ib2j+ a1ib3k +<br>
  a2jb0 + a2jb1i + a2jb2j+ a2jb3k +<br>
  a3kb0 + a3kb1i + a3kb2j+ a3kb3k <br>
@@ -165,7 +167,7 @@ a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a2b0)j + (a2b1)ji + (a2b2)jj+ (a2b3)jk +<br>
 (a3b0)k + (a3b1)ki + (a3b2)kj+ (a3b3)kk <br>
 
-**Then we substitute pairs of complex variables with a single complex variable.**<br>
+**Then we substitute pairs of complex variables with a single complex variable, from our translations.**<br>
 
 a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a1b0)i + (a1b1)-1 + (a1b2)k+ (a1b3)-j +<br>
@@ -179,10 +181,10 @@ a0b0 - (a1b1) - (a2b2) -(a3b3)   # scalars <br>
 ((a0b2) - (a1b3) + (a2b0) + (a3b1)j  # j's<br>
 ((a0b3) + (a1b2) - (a2b1) +  (a3b0))k  # k's<br>
 
-**Now we have an interface to generate our quaternion multiplication function for our python file:**
+**This give us an interface to generate our quaternion multiplication function for our python file:**
 
-We substitute pq[0] for a0 and r[0] for b0 etc...   This will multiplication function will now return<br>
-a pure quaternion of [Scalar, X, Y ,Z]
+We substitute pq[0] for a0 and r[0] for b0 etc...
+This multiplication function will now return a pure quaternion of [Scalar, X, Y ,Z] <br>
 
 
 
