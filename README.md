@@ -176,10 +176,10 @@ a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 
 **Finally, we group by scalar or i, j, k**<br>
 
-a0b0 - (a1b1) - (a2b2) -(a3b3)   # scalars <br>
-((a0b1) +a1b0) + (a2b3) - (a3b2))i  # i's<br>
-((a0b2) - (a1b3) + (a2b0) + (a3b1)j  # j's<br>
-((a0b3) + (a1b2) - (a2b1) +  (a3b0))k  # k's<br>
+a0b0 - (a1b1) - (a2b2) -(a3b3)   # **Scalars** <br>
+((a0b1) +a1b0) + (a2b3) - (a3b2))i  # **i's**<br>
+((a0b2) - (a1b3) + (a2b0) + (a3b1)j  # **j's**<br>
+((a0b3) + (a1b2) - (a2b1) +  (a3b0))k  # **k's**<br>
 
 **This give us an interface to generate our quaternion multiplication function for our python file:**
 
@@ -191,10 +191,10 @@ This multiplication function will now return a pure quaternion of [Scalar, X, Y 
 ```python
 
 def quaternion_mult(r,pq):
-    return [pq[0]*r[0]-pq[1]*r[1]-pq[2]*r[2]-pq[3]*r[3],
-            pq[0]*r[1]+pq[1]*r[0]+pq[2]*r[3]-pq[3]*r[2],
-            pq[0]*r[2]-pq[1]*r[3]+pq[2]*r[0]+pq[3]*r[1],
-            pq[0]*r[3]+pq[1]*r[2]-pq[2]*r[1]+pq[3]*r[0]]
+    return [pq[0]*r[0]-pq[1]*r[1]-pq[2]*r[2]-pq[3]*r[3], # Scalar
+            pq[0]*r[1]+pq[1]*r[0]+pq[2]*r[3]-pq[3]*r[2], # X
+            pq[0]*r[2]-pq[1]*r[3]+pq[2]*r[0]+pq[3]*r[1], # Y
+            pq[0]*r[3]+pq[1]*r[2]-pq[2]*r[1]+pq[3]*r[0]] # Z
 
 
 ```
