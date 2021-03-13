@@ -64,7 +64,7 @@ w = math.cos(rot/2.);
 ax = math.sin(rot/2.);
 # quaternion format is [scalar, x, y ,z]
 pq = [0, 1, 2, 3]  # pure quaternion.  Scalar is zero.
-rq = [w, 0, ax, 0]  # play with ax on different axis: x,y,z  Change values of w and ax.
+rq = [w, 0, 0, ax]  # play with ax on different axis: x,y,z  Change values of w and ax.
 
 pq2 = point_rotation_by_quaternion(pq,rq)
 print(pq2)
