@@ -83,7 +83,7 @@ We have covered two quaternion overloads, that are used in rotations.
 This complex number interface reduces a multiplication of quaternions to a 'pure quaternion'
 
 
-## 'Complex Number Interface' to generate multication algorithm for quaternions
+## 'Complex Number Interface' to generate multiplication algorithm for quaternions
 
 When a quaternion multiplies a 2nd quaternion, Hamilton used 'exterior product'. <br>
 Quaternion 1: [a0,a1,a3,a4] <br>
