@@ -7,8 +7,8 @@
 # [scalar, X, Y, Z] becomes
 # [scalar = cos of rotating angle in radians,
 #   X = rotating angle about x axis = 0 radians,
-#   Y = rotating angle about y axis = sin of scalar radians,
-#   Z = rotating angle about z axis = 0 radians]
+#   Y = rotating angle about y axis = 0 radians,
+#   Z = rotating angle about z axis = sin of scalar radians]
 
 # 2nd overloaded is a quaternion as a pure quaternion;
 # [scalar, X, Y, Z] becomes [0, X, Y, Z].
@@ -46,9 +46,9 @@ def normalize(v, tolerance=0.00001):
 # r is rotator quaternion
 def quaternion_mult(r,pq):
     return [pq[0]*r[0]-pq[1]*r[1]-pq[2]*r[2]-pq[3]*r[3],
-            pq[0]*r[1]+pq[1]*r[0]-pq[2]*r[3]+pq[3]*r[2],
-            pq[0]*r[2]+pq[1]*r[3]+pq[2]*r[0]-pq[3]*r[1],
-            pq[0]*r[3]-pq[1]*r[2]+pq[2]*r[1]+pq[3]*r[0]]
+            pq[0]*r[1]+pq[1]*r[0]+pq[2]*r[3]-pq[3]*r[2],
+            pq[0]*r[2]-pq[1]*r[3]+pq[2]*r[0]+pq[3]*r[1],
+            pq[0]*r[3]+pq[1]*r[2]-pq[2]*r[1]+pq[3]*r[0]]
 
 # pq is pure quaternion
 # rq is rotator quaternion
