@@ -1,15 +1,15 @@
-## This is a discussion for using Quaternion math for rotations.  It uses some computer science terminology: 'overloads' and 'interface"
+## This is a discussion for using Quaternion math for rotations.  <br> It uses some computer science terminology: 'overloads' and 'interface"
 
 
-This explanation accompanies two python files:  q3a.py and plotPrism.py <br>
+This explanation is documentation for two python files:  q3a.py and plotPrims.py <br>
 
 Some computer science terminology will be used to explain quaternions:'overload' and 'interface'
 
 In this write up, quaternions use
-a format of [scalar, x, y, z] and not [x,y,z,scalar].  First format is called Harriman's and 2nd format is called JPL.
-This article will use Harriman's format.
+a format of [scalar, x, y, z] and not [x,y,z,scalar].  First format is called Hamilton's and 2nd format is called JPL.
+This article will use Hamilton's format.
 
-We present quaternions as having overloads.  
+We present quaternions as having 'overloads'.  
 
 First overload is a quaternion that is a rotator.  In our example, rotator is for Z axis only. <br>
  [scalar, X, Y, Z] becomes  <br>
@@ -17,10 +17,14 @@ First overload is a quaternion that is a rotator.  In our example, rotator is fo
    X = rotating angle about x axis = 0 radians,  <br>
    Y = rotating angle about y axis = 0 radians,  <br>
    Z = rotating angle about z axis = sin of scalar radians]  <br>
+  
+ Note:  This is notebook, so reader can change python code to rotate another axis:X Y Z, combination or all.  Also change angle of rotation.
 
  2nd overloaded is a quaternion as a 'pure quaternion';  <br>
  [scalar, X, Y, Z] becomes [0, X, Y, Z].  <br>
  Where X Y Z represents a point's coordinates in 3D space.  <br>
+ 
+Note:  plotPrism.py is coded to handle a fixed range of X Y Z.  In next iteration it will handle a wider range.  Reader can also coordinate values of X Y Z.
  
  Procedure: quaternion rotator multiplied with pure quaternion and result
  is a 2nd pure quaternion.
@@ -33,6 +37,8 @@ First overload is a quaternion that is a rotator.  In our example, rotator is fo
 
  To prove that wire frames are correct, run the python code and rotate
  image along its axes.
+ 
+ In fig below we have an image of a rotation.
 
 
 
@@ -54,6 +60,7 @@ import matplotlib.pyplot as plt
 import os
 import sys
 plotprism_path = os.path.abspath(os.path.join(''))
+print("plotPrism.py must be in following directory")
 print(plotprism_path)
 if plotprism_path not in sys.path:
     sys.path.append(plotprism_path)
@@ -69,7 +76,8 @@ def normalize(v, tolerance=0.00001):
     return np.array(v)
 ```
 
-    C:\temp\Copula\_MathReview\01.GA\___WriteUp
+    plotPrism.py must be in following directory
+    C:\github\clones\Display.Quaternion.Wedge.Product\Quaternion.python
     
 
 ## Key math algorithms.
@@ -95,7 +103,7 @@ a1b0 + a1b1 + a1b2+ a1b3 + <br>
 a2b0 + a2b1 + a2b2+ a2b3 + <br>
 a3b0 + a3b1 + a3b2+ a3b3  <br>
 
-With a 'complex number interface' we can reduce results to a [X Y Z] or pure quaternion.
+With a 'complex number interface' we could then reduce these multiplication results to a [X Y Z] or pure quaternion.
 
 
 
@@ -134,33 +142,30 @@ Quaternion 2: [b0,b1i,b2j,b3k]<br>
  a2jb0 + a2jb1i + a2jb2j+ a2jb3k +<br>
  a3kb0 + a3kb1i + a3kb2j+ a3kb3k <br>
 
-We restate it<br>
+We restate it, by collecting complex variables together.<br>
 
 a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a1b0)i + (a1b1)ii + (a1b2)ij+ (a1b3)ik +<br>
 (a2b0)j + (a2b1)ji + (a2b2)jj+ (a2b3)jk +<br>
 (a3b0)k + (a3b1)ki + (a3b2)kj+ (a3b3)kk <br>
 
-Then we substitute  to get a single complex variable.<br>
-
+Then we substitute pairs of complex variables with a single complex variable.<br>
 a0b0 + (a0b1)i + (a0b2)j+ (a0b3)k +<br>
 (a1b0)i + (a1b1)-1 + (a1b2)k+ (a1b3)-j +<br>
 (a2b0)j + (a2b1)-k + (a2b2)-1+ (a2b3)i +<br>
 (a3b0)k + (a3b1)j + (a3b2)-i+ (a3b3)-1 <br>
 
 Next, we group by scalar or i, j, k <br>
+a0b0 - (a1b1) - (a2b2) -(a3b3)   # scalars <br>
+((a0b1) +a1b0) + (a2b3) - (a3b2))i  # i's<br>
+((a0b2) - (a1b3) + (a2b0) + (a3b1)j  # j's<br>
+((a0b3) + (a1b2) - (a2b1) +  (a3b0))k  # k's<br>
 
-a0b0 - (a1b1) - (a2b2) -(a3b3)<br>
-((a0b1) +a1b0) + (a2b3) - (a3b2))i<br>
-((a0b2) - (a1b3) + (a2b0) + (a3b1)j<br>
-((a0b3) + (a1b2) - (a2b1) +  (a3b0))k<br>
+Now we have an interface for formula for our python file:
 
-Then we have a function for our python file:
+We substitute pq[0] for a0 and r[0] for b0 etc...   This will result in <br>
+a pure quaternion of [Scalar, X, Y ,Z]
 
-We substitute pq[0] for a0 and r[0] for b0 etc,,,,   This will result in <br>
-a pure quaternion of [Scalar, X, Y ,Z],
-
-And we can now define our quaternion multiplication function:
 
 
 ```python
@@ -179,6 +184,14 @@ def point_rotation_by_quaternion(pq,rq):
     return quaternion_mult(quaternion_mult(r,pq),r_conj)
 ```
 
+Below are our two overloaded quaternions, with their angle of rotation. <br>
+These values can be changed by reader.<br>
+Note that plotPrism.py, currently can only handle a narrow range of values. This will be extended on a next version of code.<br>
+Note:  A formula for rotating a point (x, y) in 2D is given by: <br>
+
+x': = x * cos (angle) - y * sin (angle) <br>
+y': = y * cos (angle) + x * sin (angle) <br>
+
 
 ```python
 degrees = math.pi/180;
@@ -190,9 +203,26 @@ ax = math.sin(rot/2.);
 pq = [0, 1, 2, 3]  # pure quaternion.  Scalar is zero.
 rq = [w, 0, 0, ax]  # play with ax on different axis: x,y,z  Change values of w and ax.
 
+
+```
+
+#### We now apply rotation algorithms
+
+
+```python
 pq2 = point_rotation_by_quaternion(pq,rq)
 print(pq2)
 
+
+```
+
+    [0.0, -0.9999999999999998, -2.0, 3.0]
+    
+
+### We now prep for display purposes
+
+
+```python
 # Fill in a start prism wire frame, using point and a 3D origin as vertices
 # Highlight point as vertex
 
@@ -222,16 +252,18 @@ prism2 = [
 plot_prism(prism1,prism2)
 ```
 
-    [0.0, -0.9999999999999998, -2.0, 3.0]
+
+    
+![png](README_files/README_17_0.png)
     
 
 
-    
-![png](README_files/README_12_1.png)
-    
+This image can be rotated by running files q3a.py and plotPrism.py in a python ide like 'Sublime Text'
 
-
-This image can be rotated by running the q3a.py and plotPrism.py in a python ide like 'Sublime Text'
-
-Notes:  This point being rotated could be a significant of a geometric object.  For a sphere, it could represent a center. Quaternion rotation is meant to preserve shape.
+Notes:  This point being rotated could be a significant point of a geometric object.  For a sphere, it could represent a center. Quaternion rotation is meant to preserve shape.
         
+
+
+```python
+
+```
