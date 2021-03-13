@@ -1,12 +1,14 @@
 ## This is a discussion for using Quaternion math for rotations.  <br> It uses some computer science terminology: 'overloads' and 'interface"
 
+Python version: 3.8.6 running on Windows 10.<br>
+This README.MD is produced from Quaternion.Rotation.Demo.ipynb
 
 This explanation is documentation for two python files:  q3a.py and plotPrims.py <br>
 
 Some computer science terminology will be used to explain quaternions:'overload' and 'interface'
 
-In this write up, quaternions use
-a format of [scalar, x, y, z] and not [x,y,z,scalar].  First format is called Hamilton's and 2nd format is called JPL.
+In this write up, quaternions use <br>
+a format of [scalar, x, y, z] and not [x,y,z,scalar].  First format is called Hamilton's and 2nd format is called JPL.<br>
 This article will use Hamilton's format.
 
 We present quaternions as having 'overloads'.  
