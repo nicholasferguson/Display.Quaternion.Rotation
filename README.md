@@ -106,7 +106,7 @@ Hamilton solved several issues to make this work.
 He devised quaternion structures, their overloads and a complex number interface for quaternion multiplication.
 We have covered two quaternion overloads, that are used in rotations.
 
-This complex number interface reduces a multiplication of two quaternions to a quaternion result.  In our example it's used to multiply a 'rotator quaternion' and 'pure quaternion' and conjuate of a 'rotator quaternion'.  Result is a 'pure quaternion'
+This complex number interface reduces a multiplication of two quaternions to a quaternion result.  In our example it's used to multiply a 'rotator quaternion' and 'pure quaternion' and conjugate of a 'rotator quaternion'.  Result is a 'pure quaternion'
 
 
 ## 'Complex Number Interface' to generate multiplication algorithm for quaternions
