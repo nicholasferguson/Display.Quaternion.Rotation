@@ -33,8 +33,7 @@ In our example, rotator is for Z axis only. <br>
 Note:  plotPrism.py is hard coded to handle a fixed range of X Y Z as coordinate values.  In next version it will handle a wider range.  Reader can also change values of X Y Z.
  
 **Overall Algorithm:** 
-A 'quaternion rotator' multiplied with 'pure quaternion' to result
- in a 2nd 'pure quaternion'.
+A 'quaternion rotator' multiplied with 'pure quaternion' and conjugate of 'quaternion rotator' to result in a 2nd 'pure quaternion'.
 
  **To display this rotation**
  We fill out wire frames of both pure quaternions. <br>
@@ -130,7 +129,7 @@ In this example, with a 'complex number interface' we could then reduce these mu
 
 A complex number interface also has three axes: i, j, k.  They interface to X,Y,Z axis.  In our example, this interface will allow us to simplify a quaternion multiplication to a pure quaternion.
 
-First we need some rules for complex number multiplication.  With these rules we will substitute pairs of complex numbers with a single complex number.  This yields our X, Y, Z rotated point.
+First we need some rules for complex number multiplication.  With these rules we will substitute pairs of complex numbers with a single complex number.  This yields a new quaternion [Scalar, X, Y, Z].  In our example, eventually it yields 3D coordinates for a rotated point [0,X,Y,Z]
 
 **Hamilton discovered that**<br>
 ijk = -1 and of course ii, jj, kk = -1.<br>
