@@ -191,7 +191,8 @@ a0b0 - (a1b1) - (a2b2) -(a3b3)   # **Scalars** <br>
 **This give us an interface to generate our quaternion multiplication function for our python file:**
 
 We substitute pq[0] for a0 and r[0] for b0 etc...
-This multiplication function will now return a pure quaternion of [Scalar, X, Y ,Z] <br>
+This multiplication function will now return a quaternion of [Scalar, X, Y ,Z] <br>
+When we multiply that result by a 'conjugate of rotator', we get a pure quaternion of [Scalar==0, X, Y ,Z]
 
 
 
@@ -207,7 +208,7 @@ def quaternion_mult(r,pq):
 ```
 
 **We complete our rotation algorithm.**
-In below code block, you can comment out r_conj in quaternion_mult to examine results.
+In below code block, you can comment out r_conj in quaternion_mult to examine results in plot_prism
 
 
 ```python
@@ -235,7 +236,7 @@ rot = 180*degrees;
 w = math.cos(rot/2.);
 ax = math.sin(rot/2.);
 # quaternion format is [scalar, x, y ,z]
-pq = [0, 1, 2, 3]  # pure quaternion.  Scalar is zero.
+pq = [0, 1, 2, 3]  # pure quaternion as 3D coordinates.  Scalar is zero.
 rq = [w, 0, 0, ax]  # play with ax on different axis: x,y,z  Change values of w and ax.
 
 
