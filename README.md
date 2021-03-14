@@ -28,9 +28,9 @@ In our example, rotator is for Z axis only. <br>
  
  [scalar, X, Y, Z] becomes [0, X, Y, Z].  <br>
  
- This 'X Y Z' represents a point's coordinates in 3D space.  <br>
+ In this example, 'X Y Z' represents a point's coordinates in 3D space.  <br>
  
-Note:  plotPrism.py is hard coded to handle a fixed range of X Y Z values.  In next version it will handle a wider range.  Reader can also change values of X Y Z.
+Note:  plotPrism.py is hard coded to handle a fixed range of X Y Z as coordinate values.  In next version it will handle a wider range.  Reader can also change values of X Y Z.
  
 **Overall Algorithm:** 
 A 'quaternion rotator' multiplied with 'pure quaternion' to result
@@ -107,7 +107,7 @@ Hamilton solved several issues to make this work.
 He devised quaternion structures, their overloads and a complex number interface for quaternion multiplication.
 We have covered two quaternion overloads, that are used in rotations.
 
-This complex number interface reduces a multiplication of quaternions to a 'pure quaternion'
+This complex number interface reduces a multiplication of two quaternions to a quaternion result.  In our example it's used to multiply a 'rotator quaternion' and 'pure quaternion' and conjuate of a 'rotator quaternion'.  Result is a 'pure quaternion'
 
 
 ## 'Complex Number Interface' to generate multiplication algorithm for quaternions
@@ -122,15 +122,15 @@ a1b0 + a1b1 + a1b2+ a1b3 + <br>
 a2b0 + a2b1 + a2b2+ a2b3 + <br>
 a3b0 + a3b1 + a3b2+ a3b3  <br>
 
-With a 'complex number interface' we could then reduce these multiplication results to a [X Y Z] or 'pure quaternion'.
+In this example, with a 'complex number interface' we could then reduce these multiplication results to a [X Y Z] or 'pure quaternion'.
 
 
 
 ### Generate a  'Complex Number Interface' to get a quaternion multiplication function
 
-A complex number interface also has three axes: i, j, k.  They interface to X,Y,Z axis.  This interface will allow us to simplify quaternion multiplication to a pure quaternion.
+A complex number interface also has three axes: i, j, k.  They interface to X,Y,Z axis.  In our example, this interface will allow us to simplify a quaternion multiplication to a pure quaternion.
 
-First we need some rules for complex number multiplication.  With these rules we will substitute pairs of complex numbers with a single complex numbers.  This yields our X, Y, Z rotated point.
+First we need some rules for complex number multiplication.  With these rules we will substitute pairs of complex numbers with a single complex number.  This yields our X, Y, Z rotated point.
 
 **Hamilton discovered that**<br>
 ijk = -1 and of course ii, jj, kk = -1.<br>
@@ -155,7 +155,7 @@ ijk = -1<br>
 -jjik = -j<br>
 ik = -j  AND ki = j<br>
 
-**Now we redo multiplication of two quaternions**<br>
+**Now we redo multiplication of two quaternions (regardless of overload)**<br>
 Note: we need additional layers of indices to work with our complex number interface.<br>
 Quaternion 1: [a0,a1i,a2j,a3k] This is [Scalar, i, j, k] <br> 
 Quaternion 2: [b0,b1i,b2j,b3k]<br>
@@ -207,7 +207,7 @@ def quaternion_mult(r,pq):
 ```
 
 **We complete our rotation algorithm.**
-
+In below code block, you can comment out r_conj in quaternion_mult to examine results.
 
 
 ```python
