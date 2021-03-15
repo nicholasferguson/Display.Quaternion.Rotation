@@ -144,8 +144,8 @@ jk = i  AND kj = -i <br>
 
 ijk = -1<br>
 -ikj = -1  # jk = -kj <br>
-kij = -i<br>
-kkij = -k  <br>
+kij = -i  # -ik = ki <br>
+kkij = -k # we multiply both sides by k <br>
 -ij = -k
 ij=k  AND ji = -k<br>
 
