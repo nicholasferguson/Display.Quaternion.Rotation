@@ -32,10 +32,10 @@ In our example, rotator is for Z axis only.
 
 [Scalar, X, Y, Z] as a 'rotator' becomes
 
-[Scalar = cos of rotating angle in radians,
-X = rotating angle about x axis = 0 radians,
-Y = rotating angle about y axis = 0 radians,
-Z = rotating angle about z axis = sin of Scalar radians]
+[Scalar = cos of rotating angle in radians,<br>
+    X = rotating angle about x axis = 0 radians,<br>
+    Y = rotating angle about y axis = 0 radians,<br>
+    Z = rotating angle about z axis = sin of Scalar radians]<br>
 
 Note: This is notebook, so reader can change python code to rotate another axis:X Y Z, combination or all. Also change angle of rotation.
 
@@ -49,10 +49,10 @@ Note: plotPrism.py is hard coded to properly display a fixed range of X Y Z as c
 
 Overall Algorithm: A quaternion rotator multiplied with a pure quaternion, as a 3D point, and conjugate of 'quaternion rotator'.  This algorithm results in a 3D point rotated to a new position.  Result is a 'pure quaternion'of a 3D point.
 
-Wire frames of prisms display these 3D points as highlighted vertecis. 
-Initial (X Y Z) is a vertex of a prism.
-Rotated (X Y Z) is a vertex of a second prism.
-Both wire frames have a 3D origin, as a vertex (0,0,0).
+Wire frames of prisms display these 3D points as highlighted vertecis. <br>
+Initial (X Y Z) is a vertex of a prism.<br>
+Rotated (X Y Z) is a vertex of a second prism.<br>
+Both wire frames have a 3D origin, as a vertex (0,0,0).<br>
 
 To prove that wire frames are correct representations, run python code, outside of jupyter, and rotate image along its axes.
 
