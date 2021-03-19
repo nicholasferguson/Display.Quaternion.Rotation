@@ -6,45 +6,7 @@ This is documentation for two python files:  q3a.py and plotPrims.py <br>
 
 Some computer science terminology will be used to explain quaternions: 'overload' and 'interface'
 
-In this write up, quaternions use
-a format of [Scalar, X, Y, Z] and not [X, Y, Z ,Scalar].  First format is called Hamilton's and 2nd format is called JPL.<br>
-This article will use Hamilton's format.
-
-**We present quaternions as having 'overloads'.** 
-
-**First overload is a quaternion that is a rotator.**<br>
-In our example, rotator is for Z axis only. <br>
-
- [Scalar, X, Y, Z] as a 'rotator' becomes  <br>
- 
- [Scalar = cos of rotating angle in radians,  <br>
-   X = rotating angle about x axis = 0 radians,  <br>
-   Y = rotating angle about y axis = 0 radians,  <br>
-   Z = rotating angle about z axis = sin of Scalar radians]  <br>
-  
- Note:  This is notebook, so reader can change python code to rotate another axis:X Y Z, combination or all.  Also change angle of rotation.
-
- **2nd overload is a quaternion as a 'pure quaternion'.**  <br>
- 
- [scalar, X, Y, Z] becomes [0, X, Y, Z].  <br>
- 
- In this example, 'X Y Z' represents a point's coordinates in 3D space.  <br>
- 
-Note:  plotPrism.py is hard coded to handle a fixed range of X Y Z as coordinate values.  In next version it will handle a wider range.  Reader can also change values of X Y Z.
- 
-**Overall Algorithm:** 
-A 'quaternion rotator' multiplied with 'pure quaternion' and conjugate of 'quaternion rotator' to result in a 2nd 'pure quaternion'.
-
- **To display this rotation**
- We fill out wire frames of both pure quaternions. <br>
- Initial (X Y Z) is a vertex  of a prism.<br>
- Rotated (X Y Z) is a vertex of a second prism.<br>
- Both wire frames have a 3D origin, as a vertex (0,0,0).<br>
- Highlighted vertices are original and rotated points.  
-
- To prove that wire frames are correct representations, run python code, outside of jupyter, and rotate image along its axes.
- 
- In fig below we have an image of a rotation.
+In the fig below, two quaternions have been used. One quaternion represents a 3D point, displayed as a highlighted vertex in a light blue prism.  A 2nd quaternion, used as a rotator, rotates this 3D point.  Result of this rotation is displayed as a highlighted vertex in a light purple prism.  In fig below, rotation is about 'Z' axis.
 
 
 
@@ -57,6 +19,42 @@ from IPython.display import Image
 
 !["Result"](img/Result.png)
 
+
+Some computer science terminology will be used to explain quaternions: 'overload' and 'interface'
+
+In this write up, quaternions use a format of [Scalar, X, Y, Z] and not [X, Y, Z ,Scalar]. First format is called Hamilton's and 2nd format is called JPL.
+This article will use Hamilton's format.
+
+We present quaternions as having 'overloads'.
+
+First overload is a quaternion that is a rotator.
+In our example, rotator is for Z axis only.
+
+[Scalar, X, Y, Z] as a 'rotator' becomes
+
+[Scalar = cos of rotating angle in radians,
+X = rotating angle about x axis = 0 radians,
+Y = rotating angle about y axis = 0 radians,
+Z = rotating angle about z axis = sin of Scalar radians]
+
+Note: This is notebook, so reader can change python code to rotate another axis:X Y Z, combination or all. Also change angle of rotation.
+
+2nd overload is a quaternion as a 'pure quaternion'.  In our example it represents coordinates for a 3D point.
+
+[scalar, X, Y, Z] becomes [0, X, Y, Z].
+
+In this example, 'X Y Z' represents a point's coordinates in 3D space.
+
+Note: plotPrism.py is hard coded to properly display a fixed range of X Y Z as coordinate values. In next version it will handle a wider range. Reader can also change values of X Y Z.
+
+Overall Algorithm: A quaternion rotator multiplied with a pure quaternion, as a 3D point, and conjugate of 'quaternion rotator'.  This algorithm results in a 3D point rotated to a new position.  Result is a 'pure quaternion'of a 3D point.
+
+Wire frames of prisms display these 3D points as highlighted vertecis. 
+Initial (X Y Z) is a vertex of a prism.
+Rotated (X Y Z) is a vertex of a second prism.
+Both wire frames have a 3D origin, as a vertex (0,0,0).
+
+To prove that wire frames are correct representations, run python code, outside of jupyter, and rotate image along its axes.
 
 
 ```python
