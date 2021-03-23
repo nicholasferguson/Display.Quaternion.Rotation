@@ -109,7 +109,7 @@ This complex number interface reduces a multiplication of two quaternions to a q
 
 ## 'Complex Number Interface' to generate multiplication algorithm for quaternions
 
-When a quaternion multiplies a 2nd quaternion, Hamilton used 'exterior product'. <br>
+When a quaternion multiplies a 2nd quaternion, Hamilton used 'Hamilton product'. <br>
 Quaternion 1: [a0,a1,a2,a3] <br>
 Quaternion 2: [b0,b1,b2,b3] <br>
 
