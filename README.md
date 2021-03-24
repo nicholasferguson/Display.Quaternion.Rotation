@@ -49,7 +49,7 @@ Note: plotPrism.py is hard coded to properly display a fixed range of X Y Z as c
 
 Overall Algorithm: A quaternion rotator multiplied with a pure quaternion, as a 3D point, and conjugate of 'quaternion rotator'.  This algorithm results in a 3D point rotated to a new position.  Result is a 'pure quaternion'of a 3D point.
 
-Wire frames of prisms display these 3D points as highlighted vertecis. <br>
+Wire frames of prisms display these 3D points as highlighted vertices. <br>
 Initial (X Y Z) is a vertex of a prism.<br>
 Rotated (X Y Z) is a vertex of a second prism.<br>
 Both wire frames have a 3D origin, as a vertex (0,0,0).<br>
