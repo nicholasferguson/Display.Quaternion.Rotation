@@ -78,7 +78,7 @@ def plot_prism(prism_definition1, prism_definition2):
         [points2[4], points2[2], points2[6], points2[7]],
         [points2[2], points2[6], points2[3], points2[0]],
         [points2[0], points2[2], points2[4], points2[1]],
-        [points1[3], points1[6], points1[7], points1[5]]
+        [points2[3], points2[6], points2[7], points2[5]]
     ]
 #===============================
     fig = plt.figure()
