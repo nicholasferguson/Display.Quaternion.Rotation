@@ -35,6 +35,36 @@ import numpy as np
 import matplotlib.pyplot as plt
 from plotPrism import plot_prism  #plotprism.py
 
+def displayResults(pq,pq2,title):
+# Fill in a start prism wire frame, using point and a 3D origin as vertices
+# Highlight point as vertex
+
+    p1 = np.array([0.,0.,0.])
+    p2 = np.array([pq[1],0.,0.])
+    p3 = np.array([0.,pq[2],0.])
+    p4 = np.array([0.,0.,pq[3]])
+
+    prism1 = [
+        (p1[0],p1[1],p1[2]), (p2[0],p2[1],p2[2]), (p3[0],p3[1],p3[2]), (p4[0],p4[1],p4[2])
+    ]
+
+    # Fill in a rotated prism wire frame, using point and a 3D origin as vertices
+    # Highlight point as vertex
+
+    p1A = np.array([0.,0.,0.])
+    p2A = np.array([pq2[1],0.,0.])
+    p3A = np.array([0.,pq2[2],0.])
+    p4A = np.array([0.,0.,pq2[3]])
+
+    prism2 = [
+        (p1A[0],p1A[1],p1A[2]), (p2A[0],p2A[1],p2A[2]), (p3A[0],p3A[1],p3A[2]), (p4A[0],p4A[1],p4A[2])
+    ]
+
+    # to prove that plot is correct, you need to rotate image along its axes.
+
+    plot_prism(prism1,prism2,title)
+
+
 def normalize(v, tolerance=0.00001):
     mag2 = sum(n * n for n in v)
     if abs(mag2 - 1.0) > tolerance:
@@ -57,45 +87,23 @@ def point_rotation_by_quaternion(pq,rq):
     r_conj = [r[0],-1*r[1],-1*r[2],-1*r[3]]
     return quaternion_mult(quaternion_mult(r,pq),r_conj)
 
-degrees = math.pi/180;
-rot = 180*degrees;
-# for rotating about an axis.
-w = math.cos(rot/2.);
-ax = math.sin(rot/2.);
-# quaternion format is [scalar, x, y ,z]
-pq = [0, 1, 2, 3]  # pure quaternion.  Scalar is zero.
-rq = [w, 0, 0, ax]  # play with ax on different axis: x,y,z  Change values of w and ax.
+def main():
+    degrees = math.pi/180;
+    rot = 180*degrees;
+    # for rotating about an axis.
+    w = math.cos(rot/2.);
+    ax = math.sin(rot/2.);
+    # quaternion format is [scalar, x, y ,z]
+    pq = [0, 1, 2, 3]  # pure quaternion.  Scalar is zero.
+    rq = [w, 0, 0, ax]  # play with ax on different axis: x,y,z  Change values of w and ax.
 
-pq2 = point_rotation_by_quaternion(pq,rq)
-print(pq2)
+    pq2 = point_rotation_by_quaternion(pq,rq)
+    print(pq2)
 
-# Fill in a start prism wire frame, using point and a 3D origin as vertices
-# Highlight point as vertex
+    displayResults(pq,pq2,"red rotated to blue")
 
-p1 = np.array([0.,0.,0.])
-p2 = np.array([pq[1],0.,0.])
-p3 = np.array([0.,pq[2],0.])
-p4 = np.array([0.,0.,pq[3]])
-
-prism1 = [
-    (p1[0],p1[1],p1[2]), (p2[0],p2[1],p2[2]), (p3[0],p3[1],p3[2]), (p4[0],p4[1],p4[2])
-]
-
-# Fill in a rotated prism wire frame, using point and a 3D origin as vertices
-# Highlight point as vertex
-
-p1A = np.array([0.,0.,0.])
-p2A = np.array([pq2[1],0.,0.])
-p3A = np.array([0.,pq2[2],0.])
-p4A = np.array([0.,0.,pq2[3]])
-
-prism2 = [
-    (p1A[0],p1A[1],p1A[2]), (p2A[0],p2A[1],p2A[2]), (p3A[0],p3A[1],p3A[2]), (p4A[0],p4A[1],p4A[2])
-]
-
-# to prove that plot is correct, you need to rotate image along its axes.
-
-plot_prism(prism1,prism2)
+if __name__ == "__main__":
+    main()
 
 
 
