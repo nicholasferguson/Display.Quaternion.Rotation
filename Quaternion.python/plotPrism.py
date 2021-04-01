@@ -15,7 +15,7 @@ def new_subplot(self):
                 self.__subplots.append(subplot)
                 self.__subplot = subplot
 
-def plot_prism(prism_definition1, prism_definition2):
+def plot_prism(prism_definition1, prism_definition2,title):
     prism_definition_array1 = [
         np.array(list(item))
         for item in prism_definition1
@@ -88,8 +88,8 @@ def plot_prism(prism_definition1, prism_definition2):
     faces1.set_facecolor((0,1,1,0.1))
 
     ax.add_collection3d(faces1)
-    ax.plot(pt1x, pt1y, pt1z, markerfacecolor='k', markeredgecolor='k', marker='o', markersize=10, alpha=0.6)
-    ax.plot(pt2x, pt2y, pt2z, markerfacecolor='k', markeredgecolor='k', marker='o', markersize=10, alpha=0.6)
+    ax.plot(pt1x, pt1y, pt1z, markerfacecolor='r', markeredgecolor='k', marker='o', markersize=10, alpha=0.6)
+    ax.plot(pt2x, pt2y, pt2z, markerfacecolor='b', markeredgecolor='k', marker='o', markersize=10, alpha=0.6)
 
     faces2 = Poly3DCollection(edges2, linewidths=1, edgecolors='k')
     faces2.set_facecolor((0,0,1,0.1))
@@ -98,16 +98,17 @@ def plot_prism(prism_definition1, prism_definition2):
 
     # Plot the points themselves to force the scaling of the axes
   #  ax.scatter(points1[:,0], points1[:,1], points1[:,2], s=1)
-
+    maxA = max(pt1x,pt2x,pt1y,pt2y,pt1z,pt2z)
  #   ax.set_aspect('auto')
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
 
     # Setting the axes properties
-    ax.set_xlim3d([-4.0, 4.0])
-    ax.set_ylim3d([-2.0, 2.0])
-    ax.set_zlim3d([-4.0, 4.0])
+    ax.set_xlim3d([-maxA, maxA])
+    ax.set_ylim3d([-maxA, maxA])
+    ax.set_zlim3d([-maxA, maxA])
+    plt.title(title)
   #  return ax
 
     plt.show()
